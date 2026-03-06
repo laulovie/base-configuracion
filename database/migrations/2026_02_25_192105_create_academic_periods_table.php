@@ -13,9 +13,17 @@ return new class extends Migration
     {
         Schema::create('academic_periods', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('course_id')->constrained()->onDelete('cascade');
-            $table->timestamps();
+            $table->string('name')->unique(); // Ej: 2026-I
 
+            $table->date('start_date');
+
+            $table->date('end_date');
+
+            $table->enum('status', ['active', 'closed'])
+                ->default('active');
+
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 

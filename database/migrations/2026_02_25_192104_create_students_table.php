@@ -13,7 +13,24 @@ return new class extends Migration
     {
         Schema::create('students', function (Blueprint $table) {
             $table->id();
+            $table->string('student_code')->unique();
+            $table->string('name');
+            $table->string('email')->unique();
+//            $table->string('semester');
+            $table->unsignedTinyInteger('semester');
+            $table->enum('status', ['active', 'inactive'])
+                ->default('active');
+
+//            $table->foreignId('user_id')
+//                ->constrained()
+//                ->onDelete('cascade');
+
+            $table->foreignId('faculty_id')
+                ->constrained()
+                ->onDelete('cascade');
             $table->timestamps();
+//            El SoftDelets permite el borrado lógico sin eliminar el registro de la BD]
+            $table->softDeletes();
         });
     }
 

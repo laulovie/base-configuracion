@@ -11,18 +11,26 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('grades', function (Blueprint $table) {
+        Schema::create('courses', function (Blueprint $table) {
             $table->id();
-
-            $table->string('title'); // Ej: Parcial 1
+            $table->string('name');
+            $table->string('code')->unique();
             $table->text('description')->nullable();
-            $table->decimal('score', 5, 2);
-            $table->decimal('weight', 5, 2);
-            $table->date('evaluation_date');
+            $table->unsignedTinyInteger('credits');
 
-            $table->foreignId('enrollment_id')
+            $table->foreignId('teacher_id')
                 ->constrained()
                 ->onDelete('cascade');
+
+            $table->foreignId('academic_period_id')
+                ->constrained()
+                ->onDelete('cascade');
+
+            $table->unsignedInteger('capacity')->nullable();
+
+            $table->enum('status', ['active', 'inactive'])
+                ->default('active');
+
             $table->timestamps();
             $table->softDeletes();
         });
@@ -33,6 +41,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('grades');
+        Schema::dropIfExists('courses');
     }
 };

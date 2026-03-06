@@ -4,13 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use app\Models\Student;
-use app\Models\Course;
-use app\Models\Grade;
-
+use App\Models\Student;
+use App\Models\Course;
+use App\Models\Grade;
 class Enrollments extends Model
 {
-    /** @use HasFactory<\Database\Factories\EnrollmentsFactory> */
     use HasFactory;
 
     public function student()
@@ -25,6 +23,6 @@ class Enrollments extends Model
 
     public function grade()
     {
-        return $this->belongsTo(Grade::class);
+        return $this->hasMany(Grade::class);
     }
 }

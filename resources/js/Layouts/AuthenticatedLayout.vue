@@ -8,37 +8,6 @@ import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
 import { Link } from '@inertiajs/vue3';
 
 const showingNavigationDropdown = ref(false);
-
-
-const links = [
-    'Home',
-    'About Us',
-    'Team',
-    'Services',
-    'Blog',
-    'Contact Us',
-  ]
-
-   const messages = [
-    {
-      from: 'You',
-      message: `Sure, I'll see you later.`,
-      time: '10:42am',
-      color: 'deep-purple-lighten-1',
-    },
-    {
-      from: 'John Doe',
-      message: 'Yeah, sure. Does 1:00pm work?',
-      time: '10:37am',
-      color: 'green',
-    },
-    {
-      from: 'You',
-      message: 'Did you still want to grab lunch today?',
-      time: '9:47am',
-      color: 'deep-purple-lighten-1',
-    },
-  ]
 </script>
 
 <template>
@@ -220,48 +189,6 @@ const links = [
                 </div>
             </header>
 
-<v-card class="mx-auto" max-width="400">
-    <v-img
-      color="surface-variant"
-      height="100"
-      src="https://cdn.vuetifyjs.com/docs/images/cards/purple-flowers.jpg"
-      cover
-    >
-      <v-toolbar color="transparent">
-        <template v-slot:prepend>
-          <v-btn icon="$menu"></v-btn>
-        </template>
-
-        <v-toolbar-title class="text-title-large" text="Messages"></v-toolbar-title>
-
-        <template v-slot:append>
-          <v-btn icon="mdi-dots-vertical"></v-btn>
-        </template>
-      </v-toolbar>
-    </v-img>
-
-    <v-card-text>
-      <div class="font-weight-bold ms-1 mb-2">Today</div>
-
-      <v-timeline align="start" density="compact">
-        <v-timeline-item
-          v-for="message in messages"
-          :key="message.time"
-          :dot-color="message.color"
-          size="x-small"
-        >
-          <div class="mb-4">
-            <div class="font-weight-normal">
-              <strong>{{ message.from }}</strong> @{{ message.time }}
-            </div>
-
-            <div>{{ message.message }}</div>
-          </div>
-        </v-timeline-item>
-      </v-timeline>
-    </v-card-text>
-  </v-card>
-
             <!-- Page Content -->
             <main>
                 <slot />
@@ -269,55 +196,30 @@ const links = [
         </div>
     </div>
 
-
- <v-card>
+      <v-card>
     <v-layout>
       <v-navigation-drawer
         expand-on-hover
         permanent
-        rail
-      >
+        rail>
         <v-list>
           <v-list-item
             prepend-avatar="https://image2url.com/r2/default/images/1772046403007-0a2d2ca8-ec16-436a-a172-f1ae3ba60fb3.jpg"
             :subtitle="$page.props.auth.user.email"
-            v-bind:title="$page.props.auth.user.name"
+            :title="$page.props.auth.user.name"
           ></v-list-item>
         </v-list>
 
         <v-divider></v-divider>
 
         <v-list density="compact" nav>
-
-       
-    <v-list-item prepend-icon="mdi-account" title="Estudiantes" value="students"></v-list-item>
-
-
-
-         
-    <v-list-item prepend-icon="mdi-account-tie" title="Catedratico" value="Docentes"></v-list-item>
-      
-           
-    <v-list-item prepend-icon="mdi-book" title="Cursos" value="Cursos"></v-list-item>
-      
+            <Link :href="route('student.index')" class="text-decoration-none">
+          <v-list-item prepend-icon="mdi-account" title="Estudiantes" value="myfiles"></v-list-item>
+            </Link>
         </v-list>
       </v-navigation-drawer>
 
       <v-main style="height: 250px"></v-main>
     </v-layout>
   </v-card>
-
-<v-footer class="d-flex align-center justify-center ga-2 flex-wrap flex-grow-1 py-3" color="surface-light">
-    <v-btn
-      v-for="link in links"
-      :key="link"
-      :text="link"
-      variant="text"
-      rounded
-    ></v-btn>
-
-    <div class="flex-1-0-100 text-center mt-2">
-      {{ new Date().getFullYear() }} — <strong>Vuetify</strong>
-    </div>
-  </v-footer>
 </template>
