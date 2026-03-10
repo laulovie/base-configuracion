@@ -1,16 +1,6 @@
-<template>
-  <v-data-table
-    v-model:sort-by="sortBy"
-    :headers="headers"
-    :items="desserts"
-  ></v-data-table>
-
-  <pre>{{ sortBy }}</pre>
-</template>
 <script setup>
-  import { ref } from 'vue'
-  import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-
+import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
+import { Link } from '@inertiajs/vue3';
   //  const sortBy = ref([{ key: 'calories', order: 'asc' }])
 
   const headers = [
@@ -110,3 +100,20 @@
     },
   ]
 </script>
+<template>
+  <authenticated-layout>
+  <v-container>
+    <Link :href="route('student.create')">
+      <v-btn density="default">Crear Alumno</v-btn>
+    </Link>
+  </v-container>
+
+  <v-data-table
+    v-model:sort-by="sortBy"
+    :headers="headers"
+    :items="desserts"
+  ></v-data-table>
+
+  <pre>{{ sortBy }}</pre>
+  </authenticated-layout>
+</template>

@@ -1,4 +1,7 @@
 <script>
+import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
+import { Link } from '@inertiajs/vue3';
+
   export default {
     data: () => ({
       valid: false,
@@ -32,7 +35,9 @@
     }),
   }
 </script>
+
 <template>
+<authenticated-layout>
   <v-form v-model="valid">
     <v-container>
       <v-row>
@@ -76,4 +81,5 @@
       </v-row>
     </v-container>
   </v-form>
+  </authenticated-layout>
 </template>
