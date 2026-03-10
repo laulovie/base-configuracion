@@ -5,6 +5,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\TeacherController;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -25,7 +26,11 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
 
-    Route::get('/student', [StudentController::class, 'index'])->name('student.index');
+    Route::get('/Student', [StudentController::class, 'index'])->name('student.index');
+    Route::get('/Student/Create', [StudentController::class, 'create'])->name('student.create');
+
+    Route::get('/Teacher', [TeacherController::class, 'index'])->name('teacher.index');
+    Route::get('/Teacher/Create', [TeacherController::class, 'create'])->name('teacher.create');
 });
 
 require __DIR__.'/auth.php';

@@ -216,6 +216,11 @@ const showingNavigationDropdown = ref(false);
             <Link :href="route('student.index')" class="text-decoration-none">
           <v-list-item prepend-icon="mdi-account" title="Estudiantes" value="myfiles"></v-list-item>
             </Link>
+
+            <Link :href="route('teacher.index')" class="text-decoration-none">
+          <v-list-item prepend-icon="mdi-account-multiple" title="Profesores" value="myfiles"></v-list-item>
+            </Link>
+
         </v-list>
       </v-navigation-drawer>
 
